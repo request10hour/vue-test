@@ -20,8 +20,16 @@ router.push('/main')
   margin: 0;
   padding: 0;
 }
+
 header {
   max-height: 10vh;
   background-color: #ff7bff;
+}
+</style>
+
+<style>
+/* scroll bar disable */
+body::-webkit-scrollbar {
+  display: none;
 }
 </style>

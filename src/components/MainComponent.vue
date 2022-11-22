@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'
 // import animejs
 import anime from 'animejs'
 // import userouter
@@ -7,7 +8,7 @@ const router = useRouter()
 // disappear animation
 const disappear = () => {
 	anime({
-		targets: '#button',
+		targets: '.btn',
 		scale: 0,
 		easing: 'easeInBack',
 		duration: 400,
@@ -15,21 +16,47 @@ const disappear = () => {
 		loop: false
 	})
 }
+// const true or false
+const show = ref(true)
 const clicked = (path) => {
-	disappear()
-	// go to subpage1 after 1s
-	setTimeout(() => {
-		router.push(path)
-	}, 500)
+	if (show.value == true) {
+		disappear()
+		show.value = false
+		setTimeout(() => {
+			router.push(path)
+		}, 400)
+	}
+}
+// rotate 30deg when hover with animejs
+const rotate = (e) => {
+	anime({
+		targets: e.target,
+		rotate: 30,
+		easing: 'easeInOutBack',
+		duration: 400,
+		loop: false
+	})
+}
+const rerotate = (e) => {
+	anime({
+		targets: e.target,
+		rotate: 0,
+		easing: 'easeInOutBack',
+		duration: 400,
+		loop: false
+	})
 }
 </script>
 
 <template>
 	<!-- place center with wrapper grid -->
 	<div class="wrapper">
-		<button id="button" class="btn btn-primary btn-lg btn-block" v-on:click="clicked('/explore')">Explore
-			Button</button>
-		<button id="button" class="btn btn-primary btn-lg btn-block" v-on:click="clicked('/send')">Send
+		<button id="button1" class="btn" v-on:click="clicked('/explore')"
+			v-on:mouseenter="rotate($event)" v-on:mouseleave="rerotate($event)">Explore
+			Button
+		</button>
+		<button id="button2" class="btn" v-on:click="clicked('/send')"
+			v-on:mouseenter="rotate($event)" v-on:mouseleave="rerotate($event)">Send
 			Button</button>
 	</div>
 </template>
@@ -44,31 +71,26 @@ const clicked = (path) => {
 }
 
 /* make round button */
-.btn-lg {
+.btn{
 	border-radius: 10rem;
-}
-
-.btn-block {
 	width: 20rem;
 	height: 20rem;
-}
-
-.btn-primary {
+	font-size: 2rem;
 	background-color: #ff7bff;
 	border-color: #ff7bff;
 }
 
-.btn-primary:hover {
+.btn:hover {
 	background-color: #d969d9;
 	border-color: #cc62cc;
 }
 
-.btn-primary:active {
+.btn:active {
 	background-color: #cc62cc;
 	border-color: #bf5cbf;
 }
 
-.btn-primary:focus {
+.btn:focus {
 	box-shadow: 0 0 0 1rem rgba(255, 123, 255, 0.5);
 }
 </style>
