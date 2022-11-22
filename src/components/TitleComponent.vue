@@ -4,52 +4,24 @@
 defineProps({
   msg: {
     type: String,
-    required: true
+    required: true,
+    default: 'Hello World'
   },
-  msg2: {
-    type: String,
-    required: true
-  },
-  msg3: {
-    type: String,
-    required: true
-  }
 })
-const msg4 = 'title';
-const theme = {
-  color: 'orange',
-}
-
 </script>
 
 <template>
-  <h1 class="isTitle">{{ msg }}</h1>
-  <h2 :class="$style.isTitle">{{ msg2 }}</h2>
-  <h3 :class="classes.isTitle">This is {{ msg3 }} title</h3>
-  <h4>Fourth {{ msg4 }}</h4>
+  <!-- title with small icon resized-->
+  <h1>
+    <img alt="main logo" src="../assets/noname.png" width="40" height="40">
+    {{ msg }}
+  </h1>
 </template>
 
 <style scoped>
-/* h1에 적용 */
-.isTitle {
-  color: red;
-}
-/* h4에 적용 */
-h4 {
-  color: v-bind('theme.color');
-}
-</style>
-
-<style module>
-/* h2에 적용 */
-.isTitle {
-  color: blue;
-}
-</style>
-
-<style module="classes">
-/* h3에 적용 */
-.isTitle {
-  color: green;
+/* h1 color is magenta and font size is 40px */
+h1 {
+  color: magenta;
+  font-size: 40px;
 }
 </style>

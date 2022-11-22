@@ -1,22 +1,27 @@
 <script setup>
 import Title from './components/TitleComponent.vue'
-import Main from './components/MainComponent.vue'
+// setup router with vue-router
+import { useRouter, RouterView } from 'vue-router'
+// defalut router is main
+const router = useRouter()
+router.push('/main')
 </script>
 
 <template>
   <header>
-    <div class="wrapper">
-      <Title msg="This is first title" msg2="This is second title" msg3="third"></Title>
-    </div>
-    <div class="isTitle">
-      Title in App vue
-    </div>
+    <Title></Title>
   </header>
 
-  <main>
-    <Main></Main>
-  </main>
+  <RouterView />
 </template>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  max-height: 10vh;
+  background-color: #ff7bff;
+}
 </style>
